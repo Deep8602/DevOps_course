@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-	Maven3
+	'Maven3'
 	}
     environment {
         APP_PORT = '9090'
@@ -9,11 +9,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+		dir('jenkins-task1')
                 sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Unit Test') {
             steps {
+		dir('jenkins-task1')
                 sh 'mvn test'
             }
         }
